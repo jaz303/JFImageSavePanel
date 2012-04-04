@@ -4,7 +4,7 @@
 
 ## Screenshot
 
-![JFImageSavePanel](screenshot.png)
+![JFImageSavePanel](https://github.com/jaz303/JFImageSavePanel/raw/master/screenshot.png)
 
 ## Usage Example
 
