@@ -1,0 +1,19 @@
+# JFImageSavePanel
+
+&copy; 2012 Jason Frame [ [jason@onehackoranother.com](mailto:jason@onehackoranother.com) / [@jaz303](http://twitter.com/jaz303) ]
+
+## Screenshot
+
+![JFImageSavePanel](screenshot.png)
+
+## Usage Example
+
+    JFImageSavePanel *panel = [JFImageSavePanel savePanel];
+    
+    NSImage *image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://..."]];
+    
+    // This is the default image type; user can change
+    [panel setImageType:kUTTypeJPEG];
+    
+    // Image will be saved to selected path if 'OK' is pressed
+    [panel runModalForImage:image error:NULL];
