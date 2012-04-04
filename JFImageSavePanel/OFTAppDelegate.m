@@ -31,6 +31,8 @@
     
     [panel setImageType:kUTTypeJPEG];
     [panel runModalForImage:image error:NULL];
+    
+    [image release];
 }
 
 @end
