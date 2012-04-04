@@ -13,6 +13,8 @@
 		96D7ACC2152CB953002945F0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 96D7ACC0152CB953002945F0 /* Credits.rtf */; };
 		96D7ACC5152CB953002945F0 /* OFTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7ACC4152CB953002945F0 /* OFTAppDelegate.m */; };
 		96D7ACC8152CB954002945F0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D7ACC6152CB954002945F0 /* MainMenu.xib */; };
+		96D7ACD0152CB9E7002945F0 /* JFImageSavePanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 96D7ACCF152CB9E7002945F0 /* JFImageSavePanel.m */; };
+		96D7ACD2152CBB6E002945F0 /* JFImageSavePanelAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96D7ACD1152CBB6E002945F0 /* JFImageSavePanelAccessoryView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,14 +23,17 @@
 		96D7ACB4152CB953002945F0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		96D7ACB5152CB953002945F0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		96D7ACB6152CB953002945F0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		96D7ACB9152CB953002945F0 /* JFImageSavePanel-Info.plist */ = {isa = PBXFileReference; path = "JFImageSavePanel-Info.plist"; sourceTree = "<group>"; };
+		96D7ACB9152CB953002945F0 /* JFImageSavePanel-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "JFImageSavePanel-Info.plist"; sourceTree = "<group>"; };
 		96D7ACBB152CB953002945F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		96D7ACBD152CB953002945F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		96D7ACBF152CB953002945F0 /* JFImageSavePanel-Prefix.pch */ = {isa = PBXFileReference; path = "JFImageSavePanel-Prefix.pch"; sourceTree = "<group>"; };
+		96D7ACBF152CB953002945F0 /* JFImageSavePanel-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JFImageSavePanel-Prefix.pch"; sourceTree = "<group>"; };
 		96D7ACC1152CB953002945F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		96D7ACC3152CB953002945F0 /* OFTAppDelegate.h */ = {isa = PBXFileReference; path = OFTAppDelegate.h; sourceTree = "<group>"; };
-		96D7ACC4152CB953002945F0 /* OFTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OFTAppDelegate.m; sourceTree = "<group>"; };
+		96D7ACC3152CB953002945F0 /* OFTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = OFTAppDelegate.h; path = JFImageSavePanel/OFTAppDelegate.h; sourceTree = "<group>"; };
+		96D7ACC4152CB953002945F0 /* OFTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = OFTAppDelegate.m; path = JFImageSavePanel/OFTAppDelegate.m; sourceTree = "<group>"; };
 		96D7ACC7152CB954002945F0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		96D7ACCE152CB9E7002945F0 /* JFImageSavePanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JFImageSavePanel.h; sourceTree = "<group>"; };
+		96D7ACCF152CB9E7002945F0 /* JFImageSavePanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JFImageSavePanel.m; sourceTree = "<group>"; };
+		96D7ACD1152CBB6E002945F0 /* JFImageSavePanelAccessoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JFImageSavePanelAccessoryView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +51,7 @@
 		96D7ACA2152CB953002945F0 = {
 			isa = PBXGroup;
 			children = (
+				96D7ACD3152CDF24002945F0 /* Test */,
 				96D7ACB7152CB953002945F0 /* JFImageSavePanel */,
 				96D7ACB0152CB953002945F0 /* Frameworks */,
 				96D7ACAE152CB953002945F0 /* Products */,
@@ -82,10 +88,9 @@
 		96D7ACB7152CB953002945F0 /* JFImageSavePanel */ = {
 			isa = PBXGroup;
 			children = (
-				96D7ACC3152CB953002945F0 /* OFTAppDelegate.h */,
-				96D7ACC4152CB953002945F0 /* OFTAppDelegate.m */,
-				96D7ACC6152CB954002945F0 /* MainMenu.xib */,
-				96D7ACB8152CB953002945F0 /* Supporting Files */,
+				96D7ACCE152CB9E7002945F0 /* JFImageSavePanel.h */,
+				96D7ACCF152CB9E7002945F0 /* JFImageSavePanel.m */,
+				96D7ACD1152CBB6E002945F0 /* JFImageSavePanelAccessoryView.xib */,
 			);
 			path = JFImageSavePanel;
 			sourceTree = "<group>";
@@ -100,6 +105,18 @@
 				96D7ACC0152CB953002945F0 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
+			path = JFImageSavePanel;
+			sourceTree = "<group>";
+		};
+		96D7ACD3152CDF24002945F0 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				96D7ACB8152CB953002945F0 /* Supporting Files */,
+				96D7ACC3152CB953002945F0 /* OFTAppDelegate.h */,
+				96D7ACC4152CB953002945F0 /* OFTAppDelegate.m */,
+				96D7ACC6152CB954002945F0 /* MainMenu.xib */,
+			);
+			name = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +172,7 @@
 				96D7ACBC152CB953002945F0 /* InfoPlist.strings in Resources */,
 				96D7ACC2152CB953002945F0 /* Credits.rtf in Resources */,
 				96D7ACC8152CB954002945F0 /* MainMenu.xib in Resources */,
+				96D7ACD2152CBB6E002945F0 /* JFImageSavePanelAccessoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +185,7 @@
 			files = (
 				96D7ACBE152CB953002945F0 /* main.m in Sources */,
 				96D7ACC5152CB953002945F0 /* OFTAppDelegate.m in Sources */,
+				96D7ACD0152CB9E7002945F0 /* JFImageSavePanel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +214,7 @@
 				96D7ACC7152CB954002945F0 /* en */,
 			);
 			name = MainMenu.xib;
+			path = JFImageSavePanel;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

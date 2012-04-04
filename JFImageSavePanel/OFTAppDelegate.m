@@ -7,6 +7,7 @@
 //
 
 #import "OFTAppDelegate.h"
+#import "JFImageSavePanel.h"
 
 @implementation OFTAppDelegate
 
@@ -20,6 +21,16 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
+}
+
+- (IBAction)showSavePanel:(id)sender
+{
+    JFImageSavePanel *panel = [JFImageSavePanel savePanel];
+    
+    NSImage *image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Double-alaskan-rainbow.jpg/400px-Double-alaskan-rainbow.jpg"]];
+    
+    [panel setImageType:kUTTypeJPEG];
+    [panel runModalForImage:image error:NULL];
 }
 
 @end
