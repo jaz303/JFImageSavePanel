@@ -5,6 +5,7 @@
 @property (assign) IBOutlet NSView          *accessoryView;
 @property (assign) IBOutlet NSPopUpButton   *fileTypes;
 @property (assign) IBOutlet NSSlider        *compressionFactor;
+@property (assign) IBOutlet NSTextField     *compressionFactorLabel;
 
 - (void)configureSavePanel;
 - (void)fileTypeChanged:(id)sender;
@@ -15,7 +16,7 @@
 @implementation JFImageSavePanel
 
 @synthesize title, imageType;
-@synthesize savePanel, accessoryView, fileTypes, compressionFactor;
+@synthesize savePanel, accessoryView, fileTypes, compressionFactor, compressionFactorLabel;
 
 + (JFImageSavePanel *)savePanel
 {
@@ -96,6 +97,7 @@
         {
             self.imageType = kUTTypeJPEG;
             [self.compressionFactor setEnabled:YES];
+            [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
             [self.savePanel setAllowedFileTypes:[NSArray arrayWithObjects:(NSString*)kUTTypeJPEG, nil]];
             break;
         }
@@ -103,6 +105,7 @@
         {
             self.imageType = kUTTypePNG;
             [self.compressionFactor setEnabled:NO];
+            [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
             [self.savePanel setAllowedFileTypes:[NSArray arrayWithObjects:(NSString*)kUTTypePNG, nil]];
             break;
         }
@@ -110,6 +113,7 @@
         {
             self.imageType = kUTTypeTIFF;
             [self.compressionFactor setEnabled:NO];
+            [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
             [self.savePanel setAllowedFileTypes:[NSArray arrayWithObjects:(NSString*)kUTTypeTIFF, nil]];
             break;
         }
