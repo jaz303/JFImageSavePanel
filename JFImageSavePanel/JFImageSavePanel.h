@@ -10,5 +10,6 @@
 + (JFImageSavePanel *)savePanel;
 
 - (NSInteger)runModalForImage:(NSImage *)image error:(NSError **)error;
+- (void)beginWithImage:(NSImage *)image completionHandler:(void (^)(NSInteger result))block;
 
 @end
