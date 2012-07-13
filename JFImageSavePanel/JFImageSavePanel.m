@@ -67,6 +67,18 @@
     return result;
 }
 
+- (void)beginWithImage:(NSImage *)image completionHandler:(void (^)(NSInteger result))block
+{
+    [self configureSavePanel];
+    [self.savePanel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            [self saveImage:image];
+        }
+        
+        block(result);
+    }];
+}
+
 - (void)configureSavePanel
 {
     [self.savePanel setAccessoryView:self.accessoryView];
