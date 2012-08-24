@@ -115,6 +115,7 @@
 						<string key="NSFrame">{{71, 10}, {160, 25}}</string>
 						<reference key="NSSuperview" ref="1005"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:779</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="1069481334">
@@ -155,17 +156,17 @@
 							<string key="NSKeyEquivalent"/>
 							<int key="NSPeriodicDelay">400</int>
 							<int key="NSPeriodicInterval">75</int>
-							<object class="NSMenuItem" key="NSMenuItem" id="618402458">
+							<object class="NSMenuItem" key="NSMenuItem" id="18005859">
 								<reference key="NSMenu" ref="1060606921"/>
-								<string key="NSTitle">JPEG</string>
+								<string key="NSTitle">PNG</string>
 								<string key="NSKeyEquiv"/>
 								<int key="NSMnemonicLoc">2147483647</int>
 								<int key="NSState">1</int>
-								<object class="NSCustomResource" key="NSOnImage" id="11479134">
+								<object class="NSCustomResource" key="NSOnImage" id="496843659">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">NSMenuCheckmark</string>
 								</object>
-								<object class="NSCustomResource" key="NSMixedImage" id="41636798">
+								<object class="NSCustomResource" key="NSMixedImage" id="375320620">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">NSMenuMixedState</string>
 								</object>
@@ -177,31 +178,42 @@
 								<string key="NSTitle">OtherViews</string>
 								<object class="NSMutableArray" key="NSMenuItems">
 									<bool key="EncodedWithXMLCoder">YES</bool>
-									<reference ref="618402458"/>
-									<object class="NSMenuItem" id="18005859">
+									<object class="NSMenuItem" id="618402458">
 										<reference key="NSMenu" ref="1060606921"/>
-										<string key="NSTitle">PNG</string>
+										<string key="NSTitle">JPEG</string>
 										<string key="NSKeyEquiv"/>
 										<int key="NSMnemonicLoc">2147483647</int>
-										<reference key="NSOnImage" ref="11479134"/>
-										<reference key="NSMixedImage" ref="41636798"/>
+										<int key="NSState">1</int>
+										<reference key="NSOnImage" ref="496843659"/>
+										<reference key="NSMixedImage" ref="375320620"/>
 										<string key="NSAction">_popUpItemAction:</string>
 										<reference key="NSTarget" ref="512535838"/>
 									</object>
+									<object class="NSMenuItem" id="584283682">
+										<reference key="NSMenu" ref="1060606921"/>
+										<string key="NSTitle">JPEG-2000</string>
+										<string key="NSKeyEquiv"/>
+										<int key="NSMnemonicLoc">2147483647</int>
+										<reference key="NSOnImage" ref="496843659"/>
+										<reference key="NSMixedImage" ref="375320620"/>
+										<string key="NSAction">_popUpItemAction:</string>
+										<reference key="NSTarget" ref="512535838"/>
+									</object>
+									<reference ref="18005859"/>
 									<object class="NSMenuItem" id="355696351">
 										<reference key="NSMenu" ref="1060606921"/>
 										<string key="NSTitle">TIFF</string>
 										<string key="NSKeyEquiv"/>
 										<int key="NSMnemonicLoc">2147483647</int>
-										<reference key="NSOnImage" ref="11479134"/>
-										<reference key="NSMixedImage" ref="41636798"/>
+										<reference key="NSOnImage" ref="496843659"/>
+										<reference key="NSMixedImage" ref="375320620"/>
 										<string key="NSAction">_popUpItemAction:</string>
 										<reference key="NSTarget" ref="512535838"/>
 									</object>
 								</object>
 								<reference key="NSMenuFont" ref="1067612685"/>
 							</object>
-							<int key="NSSelectedIndex">-1</int>
+							<int key="NSSelectedIndex">2</int>
 							<int key="NSPreferredEdge">1</int>
 							<bool key="NSUsesItemFromMenu">YES</bool>
 							<bool key="NSAltersState">YES</bool>
@@ -220,30 +232,6 @@
 		<object class="IBObjectContainer" key="IBDocument.Objects">
 			<object class="NSMutableArray" key="connectionRecords">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">fileTypes_</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="289686524"/>
-					</object>
-					<int key="connectionID">16</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">compressionFactor_</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="743725801"/>
-					</object>
-					<int key="connectionID">17</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">accessoryView_</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1005"/>
-					</object>
-					<int key="connectionID">18</int>
-				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">fileTypes</string>
@@ -267,38 +255,6 @@
 						<reference key="destination" ref="1005"/>
 					</object>
 					<int key="connectionID">24</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">menuItemJPEG</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="618402458"/>
-					</object>
-					<int key="connectionID">25</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">menuItemPNG</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="18005859"/>
-					</object>
-					<int key="connectionID">26</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">menuItemTIFF</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="355696351"/>
-					</object>
-					<int key="connectionID">27</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">menu</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1060606921"/>
-					</object>
-					<int key="connectionID">28</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -376,6 +332,7 @@
 							<reference ref="618402458"/>
 							<reference ref="355696351"/>
 							<reference ref="18005859"/>
+							<reference ref="584283682"/>
 						</object>
 						<reference key="parent" ref="512535838"/>
 					</object>
@@ -436,6 +393,11 @@
 						<reference key="object" ref="18005859"/>
 						<reference key="parent" ref="1060606921"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">30</int>
+						<reference key="object" ref="584283682"/>
+						<reference key="parent" ref="1060606921"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -453,6 +415,7 @@
 					<string>15.IBPluginDependency</string>
 					<string>2.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
+					<string>30.IBPluginDependency</string>
 					<string>4.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
@@ -461,6 +424,7 @@
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -491,7 +455,7 @@
 				<reference key="dict.values" ref="1002"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">29</int>
+			<int key="maxID">30</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

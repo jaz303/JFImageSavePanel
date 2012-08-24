@@ -2,8 +2,8 @@
 
 @interface JFImageSavePanel : NSObject
 
-@property (retain, nonatomic) NSString           *title;
-@property (assign, nonatomic) const CFStringRef  imageType;
+@property (retain,nonatomic) NSString           *title;
+@property (assign,nonatomic) const CFStringRef  imageType;
 
 + (JFImageSavePanel *)savePanel;
 

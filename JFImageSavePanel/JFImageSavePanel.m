@@ -89,10 +89,12 @@
     
     if (UTTypeEqual(self.imageType, kUTTypeJPEG)) {
         [self.fileTypes selectItemAtIndex:0];
-    } else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
+    } else if (UTTypeEqual(self.imageType, kUTTypeJPEG2000)) {
         [self.fileTypes selectItemAtIndex:1];
-    } else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
+    } else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
         [self.fileTypes selectItemAtIndex:2];
+    } else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
+        [self.fileTypes selectItemAtIndex:3];
     }
     
     [self fileTypeChanged:nil];
@@ -115,6 +117,16 @@
         }
         case 1:
         {
+            self.imageType = kUTTypeJPEG2000;
+            [self.compressionFactor setHidden:NO];
+            [self.compressionFactorLabel setHidden:NO];
+            [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
+            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeJPEG2000]];
+            break;
+            
+        }
+        case 2:
+        {
             self.imageType = kUTTypePNG;
             [self.compressionFactor setHidden:YES];
             [self.compressionFactorLabel setHidden:YES];
@@ -122,8 +134,7 @@
             [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypePNG]];
             break;
         }
-        case 2:
-        {
+        case 3: {
             self.imageType = kUTTypeTIFF;
             [self.compressionFactor setHidden:YES];
             [self.compressionFactorLabel setHidden:YES];
@@ -151,17 +162,25 @@
         
         CGFloat compression = [self.compressionFactor floatValue] / 100.0f;
         
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
         outData = [bitmapRep representationUsingType:NSJPEGFileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:compression]}];
         
-    } else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
+    } else if (UTTypeEqual(self.imageType, kUTTypeJPEG2000)) {
         
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+        CGFloat compression = [self.compressionFactor floatValue] / 100.0f;
+        
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
+        outData = [bitmapRep representationUsingType:NSJPEG2000FileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:compression]}];
+        
+    }
+    else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
+        
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
         outData = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
         
     } else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
         
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
         outData = [bitmapRep representationUsingType:NSTIFFFileType properties:nil];
     }
     
