@@ -1,8 +1,6 @@
 #import <Foundation/Foundation.h>
 
 @interface JFImageSavePanel : NSObject
-{
-}
 
 @property (retain,nonatomic) NSString           *title;
 @property (assign,nonatomic) const CFStringRef  imageType;

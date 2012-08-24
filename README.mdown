@@ -1,11 +1,10 @@
 # JFImageSavePanel
 
-&copy; 2012 Jason Frame [ [jason@onehackoranother.com](mailto:jason@onehackoranother.com) / [@jaz303](http://twitter.com/jaz303) ]  
-MIT Licensed
+NSSavePanel wrapper for image save dialogs, similar to those in Preview.app.
 
 ## Screenshot
 
-![JFImageSavePanel](https://github.com/jaz303/JFImageSavePanel/raw/master/screenshot.png)
+![JFImageSavePanel](https://github.com/sebj/JFImageSavePanel/raw/master/screenshot.png)
 
 ## Usage Example
 
@@ -13,8 +12,14 @@ MIT Licensed
     
     NSImage *image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://..."]];
     
-    // This is the default image type; user can change
+    // This is the default image type, which can be changed.
+    // Possible values: kUTTypeJPEG, kUTTypeJPEG2000, kUTTypePNG, kUTTypeTIFF.
     [panel setImageType:kUTTypeJPEG];
     
-    // Image will be saved to selected path if 'OK' is pressed
+    // Image will be saved to selected path if 'OK' button is pressed
     [panel runModalForImage:image error:NULL];
+
+## Copyright and License
+
+&copy; 2012 Jason Frame [ [jason@onehackoranother.com](mailto:jason@onehackoranother.com) / [@jaz303](http://twitter.com/jaz303) ]  
+MIT Licensed
