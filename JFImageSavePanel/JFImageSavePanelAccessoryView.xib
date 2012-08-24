@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
-		<int key="IBDocument.SystemTarget">1070</int>
-		<string key="IBDocument.SystemVersion">11C74</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1138.23</string>
-		<string key="IBDocument.HIToolboxVersion">567.00</string>
+		<int key="IBDocument.SystemTarget">1080</int>
+		<string key="IBDocument.SystemVersion">12B19</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
+		<string key="IBDocument.AppKitVersion">1187</string>
+		<string key="IBDocument.HIToolboxVersion">624.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1938</string>
+			<string key="NS.object.0">2549</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>NSMenuItem</string>
-			<string>NSMenu</string>
-			<string>NSTextField</string>
-			<string>NSSliderCell</string>
-			<string>NSTextFieldCell</string>
-			<string>NSPopUpButton</string>
+			<string>NSCustomObject</string>
 			<string>NSCustomView</string>
+			<string>NSMenu</string>
+			<string>NSMenuItem</string>
+			<string>NSPopUpButton</string>
 			<string>NSPopUpButtonCell</string>
 			<string>NSSlider</string>
-			<string>NSCustomObject</string>
+			<string>NSSliderCell</string>
+			<string>NSTextField</string>
+			<string>NSTextFieldCell</string>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -57,7 +57,7 @@
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="642943433">
-							<int key="NSCellFlags">605158976</int>
+							<int key="NSCellFlags">605028416</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Quality:</string>
 							<object class="NSFont" key="NSSupport" id="1067612685">
@@ -86,6 +86,7 @@
 								</object>
 							</object>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSTextField" id="972579204">
 						<reference key="NSNextResponder" ref="1005"/>
@@ -97,7 +98,7 @@
 						<string key="NSReuseIdentifierKey">_NS:3944</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="61490112">
-							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Format:</string>
 							<reference key="NSSupport" ref="1067612685"/>
@@ -106,6 +107,7 @@
 							<reference key="NSBackgroundColor" ref="362662559"/>
 							<reference key="NSTextColor" ref="514963743"/>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSSlider" id="743725801">
 						<reference key="NSNextResponder" ref="1005"/>
@@ -116,20 +118,21 @@
 						<string key="NSReuseIdentifierKey">_NS:779</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="1069481334">
-							<int key="NSCellFlags">604110336</int>
+							<int key="NSCellFlags">603979776</int>
 							<int key="NSCellFlags2">0</int>
 							<string key="NSContents"/>
 							<string key="NSCellIdentifier">_NS:779</string>
 							<reference key="NSControlView" ref="743725801"/>
 							<double key="NSMaxValue">100</double>
 							<double key="NSMinValue">0.0</double>
-							<double key="NSValue">80</double>
+							<double key="NSValue">78</double>
 							<double key="NSAltIncValue">0.0</double>
 							<int key="NSNumberOfTickMarks">10</int>
 							<int key="NSTickMarkPosition">0</int>
 							<bool key="NSAllowsTickMarkValuesOnly">NO</bool>
 							<bool key="NSVertical">NO</bool>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 					<object class="NSPopUpButton" id="289686524">
 						<reference key="NSNextResponder" ref="1005"/>
@@ -141,12 +144,12 @@
 						<string key="NSReuseIdentifierKey">_NS:868</string>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSPopUpButtonCell" key="NSCell" id="512535838">
-							<int key="NSCellFlags">-2076049856</int>
+							<int key="NSCellFlags">-2076180416</int>
 							<int key="NSCellFlags2">2048</int>
 							<reference key="NSSupport" ref="1067612685"/>
 							<string key="NSCellIdentifier">_NS:868</string>
 							<reference key="NSControlView" ref="289686524"/>
-							<int key="NSButtonFlags">109199615</int>
+							<int key="NSButtonFlags">109199360</int>
 							<int key="NSButtonFlags2">129</int>
 							<string key="NSAlternateContents"/>
 							<string key="NSKeyEquivalent"/>
@@ -204,6 +207,7 @@
 							<bool key="NSAltersState">YES</bool>
 							<int key="NSArrowPosition">2</int>
 						</object>
+						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 					</object>
 				</object>
 				<string key="NSFrameSize">{249, 77}</string>
@@ -455,7 +459,7 @@
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
-				<object class="NSMutableArray" key="dict.values">
+				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -504,7 +508,7 @@
 							<string>compressionFactorLabel</string>
 							<string>fileTypes</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSView</string>
 							<string>NSSlider</string>
@@ -521,7 +525,7 @@
 							<string>compressionFactorLabel</string>
 							<string>fileTypes</string>
 						</object>
-						<object class="NSMutableArray" key="dict.values">
+						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">accessoryView</string>
@@ -563,10 +567,10 @@
 				<string>NSMenuCheckmark</string>
 				<string>NSMenuMixedState</string>
 			</object>
-			<object class="NSMutableArray" key="dict.values">
+			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{9, 8}</string>
-				<string>{7, 2}</string>
+				<string>{11, 11}</string>
+				<string>{10, 3}</string>
 			</object>
 		</object>
 	</data>

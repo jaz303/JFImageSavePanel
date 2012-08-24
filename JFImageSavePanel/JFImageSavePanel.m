@@ -21,7 +21,7 @@
 + (JFImageSavePanel *)savePanel
 {
     JFImageSavePanel *panel = [[JFImageSavePanel alloc] init];
-    return [panel autorelease];
+    return panel;
 }
 
 - (id)init
@@ -35,13 +35,11 @@
         self.savePanel  = [NSSavePanel savePanel];
         
         NSNib *accessoryNib = [[NSNib alloc] initWithNibNamed:@"JFImageSavePanelAccessoryView" bundle:nil];
-        [accessoryNib instantiateNibWithOwner:self topLevelObjects:nil];
+        [accessoryNib instantiateWithOwner:self topLevelObjects:nil];
         
         [self.fileTypes setTarget:self];
         [self.fileTypes setAction:@selector(fileTypeChanged:)];
         
-        [accessoryNib release];
-    
     }
     return self;
 }
@@ -51,8 +49,6 @@
     self.title = nil;
     
     self.savePanel = nil;
-    
-    [self.accessoryView release];
 }
 
 - (NSInteger)runModalForImage:(NSImage *)image error:(NSError **)error
@@ -75,7 +71,8 @@
             [self saveImage:image];
         }
         
-        block(result);
+        if (block != nil)
+            block(result);
     }];
 }
 
@@ -89,7 +86,7 @@
     [self.savePanel setAllowsOtherFileTypes:YES];
     
     [self.savePanel setTitle:self.title];
-
+    
     if (UTTypeEqual(self.imageType, kUTTypeJPEG)) {
         [self.fileTypes selectItemAtIndex:0];
     } else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
@@ -104,29 +101,34 @@
 
 - (void)fileTypeChanged:(id)sender
 {
+    [self.compressionFactor setEnabled:YES];
+    
     switch ([self.fileTypes indexOfSelectedItem]) {
         case 0:
         {
             self.imageType = kUTTypeJPEG;
-            [self.compressionFactor setEnabled:YES];
+            [self.compressionFactor setHidden:NO];
+            [self.compressionFactorLabel setHidden:NO];
             [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
-            [self.savePanel setAllowedFileTypes:[NSArray arrayWithObjects:(NSString*)kUTTypeJPEG, nil]];
+            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeJPEG]];
             break;
         }
         case 1:
         {
             self.imageType = kUTTypePNG;
-            [self.compressionFactor setEnabled:NO];
+            [self.compressionFactor setHidden:YES];
+            [self.compressionFactorLabel setHidden:YES];
             [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
-            [self.savePanel setAllowedFileTypes:[NSArray arrayWithObjects:(NSString*)kUTTypePNG, nil]];
+            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypePNG]];
             break;
         }
         case 2:
         {
             self.imageType = kUTTypeTIFF;
-            [self.compressionFactor setEnabled:NO];
+            [self.compressionFactor setHidden:YES];
+            [self.compressionFactorLabel setHidden:YES];
             [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
-            [self.savePanel setAllowedFileTypes:[NSArray arrayWithObjects:(NSString*)kUTTypeTIFF, nil]];
+            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeTIFF]];
             break;
         }
     }
@@ -135,7 +137,7 @@
     NSString *nameWithoutExtension = [name stringByDeletingPathExtension];
     
     if (![name isEqualToString:nameWithoutExtension]) {
-        NSString *correctExtension = (NSString *) UTTypeCopyPreferredTagWithClass(self.imageType, kUTTagClassFilenameExtension);
+        NSString *correctExtension = (__bridge NSString *) UTTypeCopyPreferredTagWithClass(self.imageType, kUTTagClassFilenameExtension);
         name = [nameWithoutExtension stringByAppendingPathExtension:correctExtension];
         [self.savePanel setNameFieldStringValue:name];
     }
@@ -146,19 +148,21 @@
     NSData *outData = nil;
     
     if (UTTypeEqual(self.imageType, kUTTypeJPEG)) {
+        
         CGFloat compression = [self.compressionFactor floatValue] / 100.0f;
-        outData = [NSBitmapImageRep representationOfImageRepsInArray:[image representations]
-                                                           usingType:NSJPEGFileType
-                                                          properties:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                      [NSNumber numberWithFloat:compression], NSImageCompressionFactor, nil]];
+        
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+        outData = [bitmapRep representationUsingType:NSJPEGFileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:compression]}];
+        
     } else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
-        outData = [NSBitmapImageRep representationOfImageRepsInArray:[image representations]
-                                                           usingType:NSPNGFileType
-                                                          properties:nil];
+        
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+        outData = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
+        
     } else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
-        outData = [NSBitmapImageRep representationOfImageRepsInArray:[image representations]
-                                                           usingType:NSTIFFFileType
-                                                          properties:nil];        
+        
+        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+        outData = [bitmapRep representationUsingType:NSTIFFFileType properties:nil];
     }
     
     if (outData) {

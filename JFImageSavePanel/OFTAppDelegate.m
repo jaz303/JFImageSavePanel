@@ -13,10 +13,6 @@
 
 @synthesize window = _window;
 
-- (void)dealloc
-{
-    [super dealloc];
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -32,7 +28,6 @@
     [panel setImageType:kUTTypeJPEG];
     [panel runModalForImage:image error:NULL];
     
-    [image release];
 }
 
 @end
