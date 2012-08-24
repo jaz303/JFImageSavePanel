@@ -6,6 +6,8 @@
 @property (assign) IBOutlet NSPopUpButton   *fileTypes;
 @property (assign) IBOutlet NSSlider        *compressionFactor;
 @property (assign) IBOutlet NSTextField     *compressionFactorLabel;
+@property (assign) IBOutlet NSTextField     *compressionLeastLabel;
+@property (assign) IBOutlet NSTextField     *compressionBestLabel;
 
 - (void)configureSavePanel;
 - (void)fileTypeChanged:(id)sender;
@@ -49,6 +51,20 @@
     self.title = nil;
     
     self.savePanel = nil;
+}
+
+- (void)setCompressionSectionVisible:(BOOL)flag {
+    NSRect newFrame = accessoryView.frame;
+    
+    if (flag) {
+        //Yes - make it visible. Increase the height so it is visible.
+        newFrame.size.height = 105.0f;
+    } else {
+        //No - hide it. Decrease the height so it is not visible.
+        newFrame.size.height = 44.0f;
+    }
+    
+    [[accessoryView animator] setFrame:newFrame];
 }
 
 - (NSInteger)runModalForImage:(NSImage *)image error:(NSError **)error
@@ -103,14 +119,12 @@
 
 - (void)fileTypeChanged:(id)sender
 {
-    [self.compressionFactor setEnabled:YES];
-    
     switch ([self.fileTypes indexOfSelectedItem]) {
         case 0:
         {
             self.imageType = kUTTypeJPEG;
-            [self.compressionFactor setHidden:NO];
-            [self.compressionFactorLabel setHidden:NO];
+            [self setCompressionSectionVisible:YES];
+            [self.compressionBestLabel setStringValue:@"Best"];
             [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
             [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeJPEG]];
             break;
@@ -118,8 +132,8 @@
         case 1:
         {
             self.imageType = kUTTypeJPEG2000;
-            [self.compressionFactor setHidden:NO];
-            [self.compressionFactorLabel setHidden:NO];
+            [self setCompressionSectionVisible:YES];
+            [self.compressionBestLabel setStringValue:@"Lossless"];
             [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
             [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeJPEG2000]];
             break;
@@ -128,16 +142,14 @@
         case 2:
         {
             self.imageType = kUTTypePNG;
-            [self.compressionFactor setHidden:YES];
-            [self.compressionFactorLabel setHidden:YES];
+            [self setCompressionSectionVisible:NO];
             [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
             [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypePNG]];
             break;
         }
         case 3: {
             self.imageType = kUTTypeTIFF;
-            [self.compressionFactor setHidden:YES];
-            [self.compressionFactorLabel setHidden:YES];
+            [self setCompressionSectionVisible:NO];
             [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
             [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeTIFF]];
             break;
