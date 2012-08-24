@@ -1,7 +1,6 @@
 # JFImageSavePanel
 
-&copy; 2012 Jason Frame [ [jason@onehackoranother.com](mailto:jason@onehackoranother.com) / [@jaz303](http://twitter.com/jaz303) ]  
-MIT Licensed
+NSSavePanel wrapper for image save dialogs, similar to those in Preview.app.
 
 ## Screenshot
 
@@ -18,3 +17,8 @@ MIT Licensed
     
     // Image will be saved to selected path if 'OK' is pressed
     [panel runModalForImage:image error:NULL];
+
+## Copyright and License
+
+&copy; 2012 Jason Frame [ [jason@onehackoranother.com](mailto:jason@onehackoranother.com) / [@jaz303](http://twitter.com/jaz303) ]  
+MIT Licensed
