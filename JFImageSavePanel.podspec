@@ -1,17 +1,8 @@
-#
-# Be sure to run `pod lib lint JFImageSavePanel.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "JFImageSavePanel"
   s.version          = "0.1.0"
-  s.summary          = "NSSavePanel wrapper for image save dialogs, similar to those in Preview.app"
-  s.description      = ""
+  s.summary          = "NSSavePanel wrapper for image save dialogs"
+  s.description      = "An NSSavePanel wrapper for use with images, similar to Preview.app. Includes image type selector and, where applicable, output quality settings"
   s.homepage         = "https://github.com/jaz303/JFImageSavePanel"
   s.screenshots      = "https://github.com/sebj/JFImageSavePanel/raw/master/screenshot.png"
   s.license          = 'MIT'
