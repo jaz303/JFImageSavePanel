@@ -49,7 +49,6 @@
 - (void)dealloc
 {
     self.title = nil;
-    
     self.savePanel = nil;
 }
 

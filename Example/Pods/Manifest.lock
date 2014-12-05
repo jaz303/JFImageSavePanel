@@ -1,0 +1,14 @@
+PODS:
+  - JFImageSavePanel (0.1.0)
+
+DEPENDENCIES:
+  - JFImageSavePanel (from `../`)
+
+EXTERNAL SOURCES:
+  JFImageSavePanel:
+    :path: ../
+
+SPEC CHECKSUMS:
+  JFImageSavePanel: 324129f3259b99ecad5a62d5d6ff5c6a707f7b02
+
+COCOAPODS: 0.35.0

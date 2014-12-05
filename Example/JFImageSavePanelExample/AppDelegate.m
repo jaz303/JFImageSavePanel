@@ -1,22 +1,27 @@
 //
-//  OFTAppDelegate.m
-//  JFImageSavePanel
+//  AppDelegate.m
+//  JFImageSavePanelExample
 //
-//  Created by Jason Frame on 04/04/2012.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Created by Jason Frame on 05/12/2014.
+//  Copyright (c) 2014 Jason Frame. All rights reserved.
 //
 
-#import "OFTAppDelegate.h"
+#import "AppDelegate.h"
 #import "JFImageSavePanel.h"
 
-@implementation OFTAppDelegate
+@interface AppDelegate ()
 
-@synthesize window = _window;
+@property (weak) IBOutlet NSWindow *window;
+@end
 
+@implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+}
+
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    // Insert code here to tear down your application
 }
 
 - (IBAction)showSavePanel:(id)sender
