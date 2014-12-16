@@ -159,7 +159,8 @@
     NSString *nameWithoutExtension = [name stringByDeletingPathExtension];
     
     if (![name isEqualToString:nameWithoutExtension]) {
-        NSString *correctExtension = (__bridge NSString *) UTTypeCopyPreferredTagWithClass(self.imageType, kUTTagClassFilenameExtension);
+        CFStringRef cfCorrectExtension = UTTypeCopyPreferredTagWithClass(self.imageType, kUTTagClassFilenameExtension);
+        NSString *correctExtension = CFBridgingRelease(cfCorrectExtension);
         name = [nameWithoutExtension stringByAppendingPathExtension:correctExtension];
         [self.savePanel setNameFieldStringValue:name];
     }
