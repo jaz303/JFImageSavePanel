@@ -102,6 +102,7 @@
     
     [self.savePanel setTitle:self.title];
     
+    [self.fileTypes selectItemAtIndex:-1];
     if (UTTypeEqual(self.imageType, kUTTypeJPEG)) {
         [self.fileTypes selectItemAtIndex:0];
     } else if (UTTypeEqual(self.imageType, kUTTypeJPEG2000)) {
