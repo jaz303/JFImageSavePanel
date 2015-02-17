@@ -1,6 +1,7 @@
 #import "JFImageSavePanel.h"
 
 @interface JFImageSavePanel ()
+
 @property (retain) NSSavePanel              *savePanel;
 @property (assign) IBOutlet NSView          *accessoryView;
 @property (assign) IBOutlet NSPopUpButton   *fileTypes;
@@ -14,6 +15,8 @@
 - (void)saveImage:(NSImage *)image;
 
 @end
+
+#pragma mark -
 
 @implementation JFImageSavePanel
 
@@ -30,18 +33,18 @@
 {
     self = [super init];
     if (self) {
-        
+
         self.title      = @"Save Image";
         self.imageType  = kUTTypePNG;
-        
+
         self.savePanel  = [NSSavePanel savePanel];
-        
+
         NSNib *accessoryNib = [[NSNib alloc] initWithNibNamed:@"JFImageSavePanelAccessoryView" bundle:nil];
         [accessoryNib instantiateWithOwner:self topLevelObjects:nil];
-        
+
         [self.fileTypes setTarget:self];
         [self.fileTypes setAction:@selector(fileTypeChanged:)];
-        
+
     }
     return self;
 }
@@ -52,56 +55,17 @@
     self.savePanel = nil;
 }
 
-- (void)setCompressionSectionVisible:(BOOL)flag {
-    NSRect newFrame = accessoryView.frame;
-    
-    if (flag) {
-        //Yes - make it visible. Increase the height so it is visible.
-        newFrame.size.height = 105.0f;
-    } else {
-        //No - hide it. Decrease the height so it is not visible.
-        newFrame.size.height = 44.0f;
-    }
-    
-    [[accessoryView animator] setFrame:newFrame];
-}
-
-- (NSInteger)runModalForImage:(NSImage *)image error:(NSError **)error
-{
-    [self configureSavePanel];
-    NSInteger result = [self.savePanel runModal];
-    
-    if (result == NSFileHandlingPanelOKButton) {
-        [self saveImage:image];
-    }
-    
-    return result;
-}
-
-- (void)beginWithImage:(NSImage *)image completionHandler:(void (^)(NSInteger result))block
-{
-    [self configureSavePanel];
-    [self.savePanel beginWithCompletionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
-            [self saveImage:image];
-        }
-        
-        if (block != nil)
-            block(result);
-    }];
-}
-
 - (void)configureSavePanel
 {
     [self.savePanel setAccessoryView:self.accessoryView];
-    
+
     [self.savePanel setCanCreateDirectories:YES];
     [self.savePanel setCanSelectHiddenExtension:YES];
     [self.savePanel setExtensionHidden:NO];
     [self.savePanel setAllowsOtherFileTypes:YES];
-    
+
     [self.savePanel setTitle:self.title];
-    
+
     [self.fileTypes selectItemAtIndex:-1];
     if (UTTypeEqual(self.imageType, kUTTypeJPEG)) {
         [self.fileTypes selectItemAtIndex:0];
@@ -112,94 +76,127 @@
     } else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
         [self.fileTypes selectItemAtIndex:3];
     }
-    
+
     [self fileTypeChanged:nil];
-    
+
+}
+
+- (void)setCompressionSectionVisible:(BOOL)flag {
+    //If flag, increase height to make visible, otherwise decrease height to hide it
+    [[self.accessoryView animator] setFrameSize:NSMakeSize(self.accessoryView.frame.size.width, flag? 105.0f : 44.0f)];
 }
 
 - (void)fileTypeChanged:(id)sender
 {
-    switch ([self.fileTypes indexOfSelectedItem]) {
+    switch (self.fileTypes.indexOfSelectedItem) {
         case 0:
         {
             self.imageType = kUTTypeJPEG;
-            [self setCompressionSectionVisible:YES];
-            [self.compressionBestLabel setStringValue:@"Best"];
-            [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
-            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeJPEG]];
+            self.compressionBestLabel.stringValue = @"Best";
             break;
         }
         case 1:
         {
             self.imageType = kUTTypeJPEG2000;
-            [self setCompressionSectionVisible:YES];
-            [self.compressionBestLabel setStringValue:@"Lossless"];
-            [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
-            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeJPEG2000]];
+            self.compressionBestLabel.stringValue = @"Lossless";
             break;
-            
         }
         case 2:
         {
             self.imageType = kUTTypePNG;
-            [self setCompressionSectionVisible:NO];
-            [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
-            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypePNG]];
             break;
         }
         case 3: {
             self.imageType = kUTTypeTIFF;
-            [self setCompressionSectionVisible:NO];
-            [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
-            [self.savePanel setAllowedFileTypes:@[(NSString*)kUTTypeTIFF]];
             break;
         }
     }
-    
-    NSString *name = [self.savePanel nameFieldStringValue];
+
+    if (self.fileTypes.indexOfSelectedItem < 2) {
+        //JPEG or JPEG2000
+        [self setCompressionSectionVisible:YES];
+        [self.compressionFactorLabel setTextColor:[NSColor controlTextColor]];
+    } else {
+        //PNG or TIFF
+        [self setCompressionSectionVisible:NO];
+        [self.compressionFactorLabel setTextColor:[NSColor disabledControlTextColor]];
+    }
+
+    [self.savePanel setAllowedFileTypes:@[(NSString*)self.imageType]];
+
+
+    NSString *name = self.savePanel.nameFieldStringValue;
     NSString *nameWithoutExtension = [name stringByDeletingPathExtension];
-    
+
     if (![name isEqualToString:nameWithoutExtension]) {
+        //NSString *correctExtension = (__bridge NSString *)UTTypeCopyPreferredTagWithClass(self.imageType, kUTTagClassFilenameExtension);
         CFStringRef cfCorrectExtension = UTTypeCopyPreferredTagWithClass(self.imageType, kUTTagClassFilenameExtension);
         NSString *correctExtension = CFBridgingRelease(cfCorrectExtension);
-        name = [nameWithoutExtension stringByAppendingPathExtension:correctExtension];
-        [self.savePanel setNameFieldStringValue:name];
+        [self.savePanel setNameFieldStringValue:[nameWithoutExtension stringByAppendingPathExtension:correctExtension]];
     }
+}
+
+- (NSInteger)runModalForImage:(NSImage *)image error:(NSError **)error
+{
+    [self configureSavePanel];
+    NSInteger result = [self.savePanel runModal];
+
+    if (result == NSFileHandlingPanelOKButton)
+        [self saveImage:image];
+
+    return result;
+}
+
+- (void)beginWithImage:(NSImage *)image completionHandler:(void (^)(NSInteger result))block
+{
+    [self configureSavePanel];
+    [self.savePanel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton)
+            [self saveImage:image];
+
+        if (block)
+            block(result);
+    }];
+}
+
+- (void)beginSheetWithImage:(NSImage *)image window:(NSWindow*)window completionHandler:(void (^)(NSInteger))block
+{
+    [self configureSavePanel];
+
+    [self.savePanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton)
+            [self saveImage:image];
+
+        if (block)
+            block(result);
+    }];
 }
 
 - (void)saveImage:(NSImage *)image
 {
     NSData *outData = nil;
-    
+    NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:image.TIFFRepresentation];
+    CGFloat compression = self.compressionFactor.floatValue / 100.0f;
+
     if (UTTypeEqual(self.imageType, kUTTypeJPEG)) {
-        
-        CGFloat compression = [self.compressionFactor floatValue] / 100.0f;
-        
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
-        outData = [bitmapRep representationUsingType:NSJPEGFileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:compression]}];
-        
-    } else if (UTTypeEqual(self.imageType, kUTTypeJPEG2000)) {
-        
-        CGFloat compression = [self.compressionFactor floatValue] / 100.0f;
-        
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
-        outData = [bitmapRep representationUsingType:NSJPEG2000FileType properties:@{NSImageCompressionFactor: [NSNumber numberWithFloat:compression]}];
-        
+        //JPEG
+        outData = [bitmapRep representationUsingType:NSJPEGFileType properties:@{NSImageCompressionFactor:@(compression)}];
+    }
+    else if (UTTypeEqual(self.imageType, kUTTypeJPEG2000)) {
+        //JPEG2000
+        outData = [bitmapRep representationUsingType:NSJPEG2000FileType properties:@{NSImageCompressionFactor:@(compression)}];
     }
     else if (UTTypeEqual(self.imageType, kUTTypePNG)) {
-        
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
+        //PNG
         outData = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
-        
-    } else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
-        
-        NSBitmapImageRep *bitmapRep = [NSBitmapImageRep imageRepWithData:[image TIFFRepresentation]];
+    }
+    else if (UTTypeEqual(self.imageType, kUTTypeTIFF)) {
+        //TIFF
         outData = [bitmapRep representationUsingType:NSTIFFFileType properties:nil];
     }
-    
-    if (outData) {
-        [outData writeToURL:[savePanel URL] atomically:YES];
-    }
+
+    if (outData)
+        [outData writeToURL:_savePanel.URL atomically:YES];
 }
 
 @end

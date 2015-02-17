@@ -16,23 +16,28 @@
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
-}
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification { }
 
 - (IBAction)showSavePanel:(id)sender
 {
     JFImageSavePanel *panel = [JFImageSavePanel savePanel];
-    
+
     NSImage *image = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:@"http://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Double-alaskan-rainbow.jpg/400px-Double-alaskan-rainbow.jpg"]];
-    
-    //[panel setImageType:kUTTypeJPEG];
+
+    //panel.imageType = kUTTypeJPEG;
     [panel runModalForImage:image error:NULL];
-    
+
+    //Alternatives:
+
+    /*[panel beginWithImage:image completionHandler:^(NSInteger result) {
+        //Do something
+        NSLog(@"Done!");
+    }];*/
+
+    /*[panel beginSheetWithImage:image window:_window completionHandler:^(NSInteger result) {
+        //Do something
+        NSLog(@"Done!");
+    }];*/
 }
 
 @end
