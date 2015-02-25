@@ -83,7 +83,7 @@
 
 - (void)setCompressionSectionVisible:(BOOL)flag {
     //If flag, increase height to make visible, otherwise decrease height to hide it
-    [[self.accessoryView animator] setFrameSize:NSMakeSize(self.accessoryView.frame.size.width, flag? 105.0f : 44.0f)];
+    [[self.accessoryView animator] setFrameSize:NSMakeSize(self.accessoryView.frame.size.width, flag? 105.0f : 42.0f)];
 }
 
 - (void)fileTypeChanged:(id)sender
@@ -196,7 +196,7 @@
     }
 
     if (outData)
-        [outData writeToURL:_savePanel.URL atomically:YES];
+        [outData writeToURL:savePanel.URL atomically:YES];
 }
 
 @end
