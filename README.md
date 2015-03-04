@@ -33,6 +33,11 @@ it, simply add the following line to your Podfile:
     
     // Image will be saved to selected path if 'OK' button is pressed
     [panel runModalForImage:image error:NULL];
+    
+## Contributors
+
+  * [Seb Jachec](http://github.com/sebj)
+  * [Jason Frame](http://github.com/jaz303)
 
 ## Copyright and License
 
