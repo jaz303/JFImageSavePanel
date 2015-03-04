@@ -19,7 +19,7 @@ it, simply add the following line to your Podfile:
 
 ## Screenshot
 
-![JFImageSavePanel](https://github.com/sebj/JFImageSavePanel/raw/master/screenshot.png)
+![JFImageSavePanel](https://github.com/jaz303/JFImageSavePanel/raw/master/screenshot.png)
 
 ## Usage Example
 
