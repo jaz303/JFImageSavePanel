@@ -6,6 +6,10 @@
 
 NSSavePanel wrapper for image save dialogs, similar to those in Preview.app.
 
+## A quick note about `IKSaveOptions`
+
+Apple provides [`IKSaveOptions`](https://developer.apple.com/library/mac/documentation/GraphicsImaging/Reference/IKSaveOptions/index.html#//apple_ref/doc/uid/TP40004705-CH3-DontLinkElementID_8), a class that offers similar functionality which I wasn't aware of when I first wrote this library. It might be worth checking this out first to see if it meets your needs; thanks to Marek Hrušovský for heads-up.
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
